@@ -1,10 +1,10 @@
 # Testing
 
 | Field | Value |
-| ----- |----- |
-| Name | Test |
-| Age | -1 |
-| Hello |  |
+| ----- | ----- |
+| Name  | Test  |
+| Age   | -1    |
+| Hello |       |
 
 **Very bold**
 
@@ -20,25 +20,24 @@ Lorem ipsum etc
 3. Item 3
 
 <table>
-	<tr>
-		<th> 0 </th>
-		<th> 1 </th>
-	</tr>
-	<tr>
-		<td>
+<tr><th> 0 </th><th> 1 </th></tr>
+<tr>
+<td>
+
 | Field | Value |
-| ----- |----- |
-| Name | Test |
-| Age | -1 |
-| Hello |  |
-		</td>
-		<td>
+| ----- | ----- |
+| Name  | Test  |
+| Age   | -1    |
+| Hello |       |
+</td>
+<td>
+
 | Field | Value |
-| ----- |----- |
-| Name | Test |
-| Age | -1 |
-| Hello |  |
-		</td>
-	</tr>
+| ----- | ----- |
+| Name  | Test  |
+| Age   | -1    |
+| Hello |       |
+</td>
+</tr>
 </table>
 

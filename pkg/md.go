@@ -38,18 +38,18 @@ func (r Row) String() string {
 	var header strings.Builder
 	var cols strings.Builder
 
-	cols.WriteString("\t<tr>\n")
+	header.WriteString("<tr>")
+	cols.WriteString("<tr>\n")
 
 	for i, row := range r {
-		header.WriteString(fmt.Sprintf("\t\t<th> %d </th>\n", i))
-		cols.WriteString(fmt.Sprintf("\t\t<td>\n%s\t\t</td>\n", row))
+		header.WriteString(fmt.Sprintf("<th> %d </th>", i))
+		cols.WriteString(fmt.Sprintf("<td>\n\n%s</td>\n", row))
 	}
-	cols.WriteString("\t</tr>\n")
+	header.WriteString("</tr>\n")
+	cols.WriteString("</tr>\n")
 
 	sb.WriteString("<table>\n")
-	sb.WriteString("\t<tr>\n")
 	sb.WriteString(header.String())
-	sb.WriteString("\t</tr>\n")
 	sb.WriteString(cols.String())
 	sb.WriteString("</table>\n")
 
