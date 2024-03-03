@@ -11,6 +11,8 @@ func main() {
 	var c md.Column
 
 	t := md.NewTable("Field", "Value")
+	hr := md.NewHeaderRow("**Table 1**", "*Table 2*")
+	hrNum := md.NewHeaderRow("0", "1")
 
 	t.Add(
 		[]string{"Name", "Test"},
@@ -30,6 +32,14 @@ func main() {
 			t,
 			t,
 		},
+		hr.Add(
+			t,
+			t,
+		),
+		hrNum.Add(
+			t,
+			t,
+		),
 	)
 
 	fmt.Print(c.String())

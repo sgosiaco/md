@@ -11,14 +11,15 @@ type Renderable interface {
 
 type Column []Renderable
 
-func (d *Column) Add(item ...Renderable) {
-	*d = append(*d, item...)
+func (c *Column) Add(item ...Renderable) Renderable {
+	*c = append(*c, item...)
+	return c
 }
 
-func (d Column) String() string {
+func (c Column) String() string {
 	var sb strings.Builder
 
-	for _, item := range d {
+	for _, item := range c {
 		sb.WriteString(item.String())
 		// one newline for gap
 		sb.WriteString("\n")
@@ -29,23 +30,60 @@ func (d Column) String() string {
 
 type Row []Renderable
 
-func (r *Row) Add(item ...Renderable) {
+func (r *Row) Add(item ...Renderable) Renderable {
 	*r = append(*r, item...)
+	return r
 }
 
 func (r Row) String() string {
 	var sb strings.Builder
+	var cols strings.Builder
+
+	cols.WriteString("<tr>\n")
+	for _, column := range r {
+		cols.WriteString(fmt.Sprintf("<td>\n\n%s</td>\n", column))
+	}
+	cols.WriteString("</tr>\n")
+
+	sb.WriteString("<table>\n")
+	sb.WriteString(cols.String())
+	sb.WriteString("</table>\n")
+
+	return sb.String()
+}
+
+type HeaderRow struct {
+	Headers []string
+	Columns []Renderable
+}
+
+func NewHeaderRow(headers ...string) HeaderRow {
+	return HeaderRow{
+		Headers: headers,
+	}
+}
+
+func (h *HeaderRow) Add(item ...Renderable) Renderable {
+	h.Columns = append(h.Columns, item...)
+	return h
+}
+
+func (h HeaderRow) String() string {
+	var sb strings.Builder
 	var header strings.Builder
 	var cols strings.Builder
 
-	header.WriteString("<tr>")
-	cols.WriteString("<tr>\n")
-
-	for i, row := range r {
-		header.WriteString(fmt.Sprintf("<th> %d </th>", i))
-		cols.WriteString(fmt.Sprintf("<td>\n\n%s</td>\n", row))
+	header.WriteString("<tr>\n")
+	for _, h := range h.Headers {
+		// adding /n after %s since str only
+		header.WriteString(fmt.Sprintf("<th>\n\n%s\n</th>\n", h))
 	}
 	header.WriteString("</tr>\n")
+
+	cols.WriteString("<tr>\n")
+	for _, row := range h.Columns {
+		cols.WriteString(fmt.Sprintf("<td>\n\n%s</td>\n", row))
+	}
 	cols.WriteString("</tr>\n")
 
 	sb.WriteString("<table>\n")
@@ -133,8 +171,9 @@ func NewTable(columns ...string) Table {
 	}
 }
 
-func (t *Table) Add(row ...[]string) {
+func (t *Table) Add(row ...[]string) Renderable {
 	t.Rows = append(t.Rows, row...)
+	return t
 }
 
 func (t Table) String() string {
@@ -165,11 +204,3 @@ func (t Table) String() string {
 
 	return sb.String()
 }
-
-/*
-
-| Syntax | Description |
-| ----------- | ----------- |
-| Header | Title |
-| Paragraph | Text |
-*/
