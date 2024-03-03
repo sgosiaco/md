@@ -22,12 +22,16 @@ func main() {
 
 	c.Add(
 		md.H1("Testing"),
-		t,
 		md.Bold("Very bold"),
+		t,
+		md.H2("Testing 2"),
 		md.Italic("Emphasis"),
+		md.Strikethrough("Not valid"),
+		md.H3("Testing 3"),
 		md.Text("Lorem ipsum etc"),
 		md.List{"Apple", "Banana", "Orange"},
 		md.OrderedList{"Item 1", "Item 2", "Item 3"},
+		md.Divider,
 		md.Row{
 			t,
 			t,

@@ -1,14 +1,20 @@
 # Testing
 
+**Very bold**
+
 | Field | Value |
 | ----- | ----- |
 | Name  | Test  |
 | Age   | -1    |
 | Hello |       |
 
-**Very bold**
+## Testing 2
 
 *Emphasis*
+
+~~Not valid~~
+
+### Testing 3
 
 Lorem ipsum etc
 - Apple
@@ -18,6 +24,8 @@ Lorem ipsum etc
 1. Item 1
 2. Item 2
 3. Item 3
+
+---
 
 <table>
 <tr>
