@@ -48,13 +48,18 @@ func (h HeaderRow) String() string {
 
 	cols.WriteString("<tr>\n")
 	for _, row := range h.Columns {
-		cols.WriteString(fmt.Sprintf("<td>\n\n%s</td>\n", row))
+		// convert each renderable to html in order to ensure maximum compatibility
+		cols.WriteString(fmt.Sprintf("<td>\n\n%s</td>\n", ToHTML(row.String())))
 	}
 	cols.WriteString("</tr>\n")
 
 	sb.WriteString("<table>\n")
+	sb.WriteString("<thead>\n")
 	sb.WriteString(header.String())
+	sb.WriteString("</thead>\n")
+	sb.WriteString("<tbody>\n")
 	sb.WriteString(cols.String())
+	sb.WriteString("</tbody>\n")
 	sb.WriteString("</table>\n")
 
 	return sb.String()

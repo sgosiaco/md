@@ -1,5 +1,13 @@
 package md
 
+import (
+	"fmt"
+
+	"github.com/gomarkdown/markdown"
+	"github.com/gomarkdown/markdown/html"
+	"github.com/gomarkdown/markdown/parser"
+)
+
 // Renderable defines renerable items
 type Renderable interface {
 	String() string
@@ -35,8 +43,8 @@ type HeaderRow struct {
 }
 
 // NewHeaderRow creates new header row with given headers
-func NewHeaderRow(headers ...string) HeaderRow {
-	return HeaderRow{
+func NewHeaderRow(headers ...string) *HeaderRow {
+	return &HeaderRow{
 		Headers: headers,
 	}
 }
@@ -110,15 +118,66 @@ type Table struct {
 }
 
 // NewTable creates new table with given columns
-func NewTable(columns ...string) Table {
-	return Table{
+func NewTable(columns ...string) *Table {
+	return &Table{
 		Columns: columns,
 	}
 }
 
-// Add adds row to table
+// Add adds rows to table
 // Returns itself for composability
 func (t *Table) Add(row ...[]string) Renderable {
 	t.Rows = append(t.Rows, row...)
 	return t
+}
+
+// AddAny adds rows to table
+// Calls fmt.Sprint on each item in each row to convert to string
+// Returns itself for composability
+func (t *Table) AddAny(row ...[]any) Renderable {
+	var converted [][]string
+	for _, r := range row {
+		convertedRow := make([]string, 0, len(r))
+		for _, item := range r {
+			convertedRow = append(convertedRow, fmt.Sprint(item))
+		}
+		converted = append(converted, convertedRow)
+	}
+
+	t.Rows = append(t.Rows, converted...)
+	return t
+}
+
+// AddRow adds items as row to table
+// Returns itself for composability
+func (t *Table) AddRow(items ...string) Renderable {
+	t.Rows = append(t.Rows, items)
+	return t
+}
+
+// AddRowAny adds items as row to table
+// Calls fmt.Sprint on each item to convert to string
+// Returns itself for composability
+func (t *Table) AddRowAny(items ...any) Renderable {
+	row := make([]string, 0, len(items))
+	for _, item := range items {
+		row = append(row, fmt.Sprint(item))
+	}
+	t.Rows = append(t.Rows, row)
+	return t
+}
+
+// ToHTML converts given markdown to html string
+func ToHTML(input string) string {
+	// create markdown parser with extensions
+	extensions := parser.CommonExtensions | parser.AutoHeadingIDs | parser.NoEmptyLineBeforeBlock
+	p := parser.NewWithExtensions(extensions)
+	doc := p.Parse([]byte(input))
+
+	// create HTML renderer with extensions
+	htmlFlags := html.CommonFlags | html.HrefTargetBlank
+	opts := html.RendererOptions{Flags: htmlFlags}
+	renderer := html.NewRenderer(opts)
+
+	return string(markdown.Render(doc, renderer))
 }

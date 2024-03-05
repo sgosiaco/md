@@ -49,6 +49,7 @@ Lorem ipsum etc
 </table>
 
 <table>
+<thead>
 <tr>
 <th>
 
@@ -59,27 +60,71 @@ Lorem ipsum etc
 *Table 2*
 </th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>
 
-| Field | Value |
-| ----- | ----- |
-| Name  | Test  |
-| Age   | -1    |
-| Hello |       |
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Name</td>
+<td>Test</td>
+</tr>
+
+<tr>
+<td>Age</td>
+<td>-1</td>
+</tr>
+
+<tr>
+<td>Hello</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </td>
 <td>
 
-| Field | Value |
-| ----- | ----- |
-| Name  | Test  |
-| Age   | -1    |
-| Hello |       |
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Name</td>
+<td>Test</td>
+</tr>
+
+<tr>
+<td>Age</td>
+<td>-1</td>
+</tr>
+
+<tr>
+<td>Hello</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </td>
 </tr>
+</tbody>
 </table>
 
 <table>
+<thead>
 <tr>
 <th>
 
@@ -90,23 +135,66 @@ Lorem ipsum etc
 1
 </th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>
 
-| Field | Value |
-| ----- | ----- |
-| Name  | Test  |
-| Age   | -1    |
-| Hello |       |
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Name</td>
+<td>Test</td>
+</tr>
+
+<tr>
+<td>Age</td>
+<td>-1</td>
+</tr>
+
+<tr>
+<td>Hello</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </td>
 <td>
 
-| Field | Value |
-| ----- | ----- |
-| Name  | Test  |
-| Age   | -1    |
-| Hello |       |
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Name</td>
+<td>Test</td>
+</tr>
+
+<tr>
+<td>Age</td>
+<td>-1</td>
+</tr>
+
+<tr>
+<td>Hello</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </td>
 </tr>
+</tbody>
 </table>
 

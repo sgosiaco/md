@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	md "github.com/sgosiaco/md/pkg"
+	"github.com/sgosiaco/md/pkg/md"
 )
 
 func main() {
